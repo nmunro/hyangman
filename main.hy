@@ -6,7 +6,7 @@
       (setv l (get-letter data))
       (if-not (= (word (into data :letters (doto (.get data "letters") (.append l)))) (.get data "word"))
         (game-loop
-          (if (not (in l (.get data "word")))
+          (if-not (in l (.get data "word"))
             (into data :lives (- (.get data "lives") 1) :counter (inc (.get data "counter" 0)) :body (build-body data))
             data))
         (+ "GAME OVER, YOU WIN, THE WORD WAS: " (word data))))))
